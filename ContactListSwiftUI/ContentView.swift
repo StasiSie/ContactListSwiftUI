@@ -8,9 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    let personsList = PersonManager.shared.getPerson()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        TabView {
+            NavigationView {
+                ContactsListView(personsList: personsList)
+            }
+            .tabItem {
+                Image(systemName: "person")
+                Text("Contacts")
+            }
+            CathegorizedContactsListView(personsList: personsList)
+                .tabItem {
+                    Image(systemName: "person.fill")
+                    Text("Persons")
+                }
+        }
     }
 }
 
